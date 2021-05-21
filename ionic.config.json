@@ -1,0 +1,7 @@
+{
+  "name": "fainanna",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
