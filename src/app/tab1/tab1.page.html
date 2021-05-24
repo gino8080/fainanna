@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Tab 154
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,24 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Tab 1++</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-button (click)="requestLEScan()">requestLEScan</ion-button>
+  <ion-button (click)="requestDevice()">requestDevice</ion-button>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-list>
+    <ion-item *ngFor="let device of deviceList">
+      <ion-label>{{device.localName}}-{{device.rssi}}</ion-label>
+      <div>
+
+        <ion-label>{{device.uuids.join()}}</ion-label>
+        <ion-label>{{device.data}}</ion-label>
+      </div>
+    </ion-item>
+
+  </ion-list>
+
+  <!-- <app-explore-container name="Tab 122 page"></app-explore-container> -->
 </ion-content>
+5

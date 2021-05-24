@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "run:android": "ionic capacitor run android -l --external"
   },
   "private": true,
   "dependencies": {
@@ -19,11 +20,16 @@
     "@angular/platform-browser": "~11.2.0",
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
+    "@capacitor-community/bluetooth-le": "^1.0.0-4",
+    "@capacitor/android": "3.0.0",
     "@capacitor/app": "1.0.0",
     "@capacitor/core": "3.0.0",
     "@capacitor/haptics": "1.0.0",
     "@capacitor/keyboard": "1.0.0",
+    "@ionic-native/bluetooth-serial": "^5.33.0",
     "@ionic/angular": "^5.5.2",
+    "cordova-plugin-bluetooth-serial": "^0.4.7",
+    "lodash": "^4.17.21",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
