@@ -12,17 +12,17 @@
       <ion-title size="large">Tab 1++</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-button (click)="connect()">connect</ion-button>
+
   <ion-button (click)="requestLEScan()">requestLEScan</ion-button>
   <ion-button (click)="requestDevice()">requestDevice</ion-button>
 
+  <ion-button (click)="vibration(true)">vibration ON</ion-button>
+  <ion-button (click)="vibration(false)">vibration OFF</ion-button>
   <ion-list>
-    <ion-item *ngFor="let device of deviceList">
-      <ion-label>{{device.localName}}-{{device.rssi}}</ion-label>
-      <div>
+    <ion-item *ngFor="let log of logs">
+      <ion-label>{{log}}</ion-label>
 
-        <ion-label>{{device.uuids.join()}}</ion-label>
-        <ion-label>{{device.data}}</ion-label>
-      </div>
     </ion-item>
 
   </ion-list>

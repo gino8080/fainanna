@@ -5,8 +5,10 @@ import {
   ScanResult,
 } from '@capacitor-community/bluetooth-le';
 import { sortby } from 'lodash';
-const UUID_SERVICE = '00001101-0000-1000-8000-00805F9B34FB'.toLowerCase();
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 
+const UUID_SERVICE = '00001101-0000-1000-8000-00805F9B34FB'.toLowerCase();
+const FLN_DEVICE_HMAC = '00:19:10:09:4A:88';
 interface Device extends ScanResult {
   data: any;
 }
@@ -17,8 +19,46 @@ interface Device extends ScanResult {
 })
 export class Tab1Page {
   public devices: Device[] = [];
-  constructor() {}
 
+  public logs: string[] = [];
+
+  constructor(private bluetoothSerial: BluetoothSerial) {}
+
+  get deviceLogs() {
+    return this.logs;
+  }
+  async connect() {
+    this.logs = [];
+    this.bluetoothSerial.connect(FLN_DEVICE_HMAC).subscribe(
+      (connected) => {
+        console.log('🚀 ~ this.bluetoothSerial.connect ~ connected', connected);
+        this.logs.push('connected to ' + connected);
+        this.bluetoothSerial.subscribe('\n').subscribe(
+          (data) => {
+            console.log('🚀 ~ data', data);
+            this.logs.push(data);
+          },
+          (err) => {
+            console.error(err);
+          }
+        );
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
+  }
+
+  vibration(enable) {
+    const data = enable ? 'FLN_CMD {VON}' : 'FLN_CMD {VOFF}';
+    this.bluetoothSerial
+      .write(data)
+      .then((success) => {
+        console.log('🚀 ~ this.bluetoothSerial.write ~ ', data);
+        this.logs.push(data);
+      })
+      .catch((err) => console.error(err));
+  }
   async requestLEScan(): Promise<void> {
     console.log('requestLEScan');
     try {
@@ -49,11 +89,16 @@ export class Tab1Page {
     console.log('requestDevice');
     try {
       await BleClient.initialize();
-      await BleClient.requestDevice({
+      const device = await BleClient.requestDevice({
         //services: [UUID_SERVICE],
-      }).then((device) => {
-        // alert(JSON.stringify(device, null, 2));
+        namePrefix: 'HC',
       });
+      alert(JSON.stringify(device, null, 2));
+      await BleClient.connect(device.deviceId).then((connected) => {
+        alert('connected to ' + device.name);
+      });
+
+      //await BleClient.read(device.deviceId)
     } catch (error) {
       console.error(error);
     }
@@ -64,7 +109,8 @@ export class Tab1Page {
       device.data = JSON.stringify(device.manufacturerData);
       return device;
     });
-
+    //console.log('🚀 ~ devices ~ devices', devices);
+    return devices;
     return sortby(devices, ['rssi']);
   }
 }
