@@ -33,6 +33,7 @@ export class Tab1Page {
       (connected) => {
         console.log('🚀 ~ this.bluetoothSerial.connect ~ connected', connected);
         this.logs.push('connected to ' + connected);
+        //this.checkData();
         this.bluetoothSerial.subscribe('\n').subscribe(
           (data) => {
             console.log('🚀 ~ data', data);
@@ -49,6 +50,14 @@ export class Tab1Page {
     );
   }
 
+  // checkData() {
+  //   this.bluetoothSerial.subscribeRawData().subscribe((res) => {
+  //     this.bluetoothSerial.read().then((data) => {
+  //       console.log('checkData:' + data);
+  //     });
+  //   });
+  // }
+
   vibration(enable) {
     const data = enable ? 'FLN_CMD {VON}' : 'FLN_CMD {VOFF}';
     this.bluetoothSerial
@@ -59,6 +68,7 @@ export class Tab1Page {
       })
       .catch((err) => console.error(err));
   }
+
   async requestLEScan(): Promise<void> {
     console.log('requestLEScan');
     try {

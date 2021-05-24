@@ -10,7 +10,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "run:android": "ionic capacitor run android -l --external"
+    "run:android:device": "ionic capacitor run android -l --external",
+    "run:ios:device": "ionic capacitor run ios -l --external",
+    "run:ios:simulator": "npx cap run ios"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +27,7 @@
     "@capacitor/app": "1.0.0",
     "@capacitor/core": "3.0.0",
     "@capacitor/haptics": "1.0.0",
+    "@capacitor/ios": "3.0.0",
     "@capacitor/keyboard": "1.0.0",
     "@ionic-native/bluetooth-serial": "^5.33.0",
     "@ionic-native/core": "^5.33.0",
