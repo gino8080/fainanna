@@ -10,8 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "run:android:device": "ionic capacitor run android -l --external",
-    "run:ios:device": "ionic capacitor run ios -l --external",
+    "run:android:device": "npx ionic capacitor run android -l --external",
+    "run:ios:device": "npx ionic capacitor run ios -l --external",
     "run:ios:simulator": "npx cap run ios"
   },
   "private": true,

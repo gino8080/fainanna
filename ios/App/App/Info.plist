@@ -50,5 +50,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>Please use BT</string>
 </dict>
 </plist>
