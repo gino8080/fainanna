@@ -1,6 +1,9 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "fainanna",
-	"webDir": "www",
-	"bundledWebRuntime": false
+  "appId": "io.ionic.starter",
+  "appName": "fainanna",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "http://192.168.178.148:8100"
+  }
 }

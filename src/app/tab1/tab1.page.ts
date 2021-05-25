@@ -8,7 +8,7 @@ import { sortby } from 'lodash';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 
 const UUID_SERVICE = '00001101-0000-1000-8000-00805F9B34FB'.toLowerCase();
-const FLN_DEVICE_HMAC = '00:19:10:09:4A:88';
+const FLN_DEVICE_HMAC = '';
 interface Device extends ScanResult {
   data: any;
 }
@@ -22,7 +22,7 @@ export class Tab1Page {
 
   public logs: string[] = [];
 
-  constructor(private bluetoothSerial: BluetoothSerial) {}
+  constructor(private bluetoothSerial: BluetoothSerial) { }
 
   get deviceLogs() {
     return this.logs;
