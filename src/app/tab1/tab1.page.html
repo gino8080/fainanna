@@ -10,13 +10,25 @@
       <ion-title size="large">Tab BT</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-button (click)="connect()">connect</ion-button>
+
 
   <ion-button (click)="requestLEScan()">requestLEScan</ion-button>
   <ion-button (click)="requestDevice()">requestDevice</ion-button>
 
+  <ion-button (click)="disconnect()">disconnect</ion-button>
+
   <ion-button (click)="vibration(true)">vibration ON</ion-button>
   <ion-button (click)="vibration(false)">vibration OFF</ion-button>
+  <ion-list>
+    <ion-item *ngFor="let device of deviceList" (click)="connect(device)">
+      <ion-label>
+        <h4>{{device.localName}}</h4>
+        <h4>{{device.device.deviceId}}</h4>
+        <pre>{{device.data}}</pre>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
   <ion-list>
     <ion-item *ngFor="let log of logs">
       <ion-label>{{log}}</ion-label>
