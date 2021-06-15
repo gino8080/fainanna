@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
+import { BLE } from '@ionic-native/ble/ngx/index';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -13,9 +13,10 @@ import { AppComponent } from './app.component';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
+    BLE,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    BluetoothSerial,
+
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

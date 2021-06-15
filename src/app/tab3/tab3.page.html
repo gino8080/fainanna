@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-title> Tab 3 </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,6 +10,16 @@
       <ion-title size="large">Tab 3</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-button (click)="scan()">scan</ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let log of logList">
+      <ion-label>
+        <h4>{{log}}</h4>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
   <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>

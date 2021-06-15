@@ -6,6 +6,7 @@ import {
   numbersToDataView,
 } from '@capacitor-community/bluetooth-le';
 import { sortby } from 'lodash';
+import { BLE } from '@ionic-native/ble/ngx';
 
 const UUID_SERVICE = '00001101-0000-1000-8000-00805F9B34FB'.toLowerCase();
 const UUID_FLN = '0000ffe0-0000-1000-8000-00805f9b34fb';
@@ -35,11 +36,12 @@ export class Tab1Page {
   public logs: string[] = [];
 
   public device: Device;
-  constructor() {}
+  constructor() { }
 
   get deviceLogs() {
     return this.logs;
   }
+
 
   // checkData() {
   //   this.bluetoothSerial.subscribeRawData().subscribe((res) => {
@@ -63,6 +65,7 @@ export class Tab1Page {
       await BleClient.requestLEScan(
         {
           //services: [UUID_SERVICE],
+
         },
         (result) => {
           console.log('received new scan result', result);
@@ -125,8 +128,8 @@ export class Tab1Page {
 
       await BleClient.startNotifications(
         device.deviceId,
-        UUID_FLN,
-        UUID_FLN,
+        UUID_SERVICE,
+        UUID_SERVICE,
         (value) => {
           console.log('current heart rate', value);
         }
@@ -148,12 +151,13 @@ export class Tab1Page {
 
   async connect(device: Device): Promise<void> {
     console.log('connect DEVICE', device);
-    debugger;
+
     const deviceId = device.device.deviceId;
     try {
       await BleClient.disconnect(deviceId);
-      await BleClient.connect(deviceId);
+      const connected = await BleClient.connect(deviceId);
       console.log('connected to device', device);
+      debugger;
       this.device = device;
       // const result = await BleClient.read(
       //   device.deviceId,
